@@ -16,5 +16,13 @@
 
 
 #nextflow run /home/ntpierce/nf-predictorthologs -c ucdavis-farm.profile,config/Hsapiens_genes.config -resume
-nextflow run /home/ntpierce/nf-predictorthologs -c ucdavis-farm.profile,config/QfO_Hsapiens_DNA.config -resume
+#nextflow run /home/ntpierce/nf-predictorthologs -c ucdavis-farm.profile,config/QfO_Hsapiens_DNA.config -resume
+
+# running now:
+#nextflow run /home/ntpierce/nf-predictorthologs -c ucdavis-farm.profile,config/QfO_vertebrates.config -resume
+
+
+
+# try yaml profile input:
+nextflow run /home/ntpierce/nf-predictorthologs -c ucdavis-farm.yml,config/QfO_vertebrates.config -resume
 

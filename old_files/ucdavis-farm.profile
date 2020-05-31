@@ -11,7 +11,8 @@ docker {
 process {
     executor = 'slurm'
     // beforeScript = 'conda activate nextflow; module load singularity'
-    clusterOptions = '--partition bmm'
+    clusterOptions = '--partition bml'
+    queueSize = 15 
 }
 
 params {

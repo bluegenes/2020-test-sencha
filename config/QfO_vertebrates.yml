@@ -1,0 +1,114 @@
+# config file for simulating reads from QfO and Ensembl (noncoding, etc)
+
+run_name: "QfO_vertebrates"
+output_directory: simulate_translate_QfO
+
+species_metadata: config/QfO_species_metadata.csv
+
+samples: 
+  # Ensembl files for vertebrates in QfO. For humans: corresponding release
+  Homo_sapiens_9606:
+    ncRNA: ftp://ftp.ensembl.org/pub/grch37/current/fasta/homo_sapiens/ncrna/Homo_sapiens.GRCh37.ncrna.fa.gz
+    qfo_dna: ftp://ftp.ebi.ac.uk/pub/databases/reference_proteomes/QfO/Eukaryota/UP000005640_9606_DNA.fasta.gz
+  Bos_taurus_9913: # this is release 99 == newer than human data. hmm.
+    ncRNA: ftp://ftp.ensembl.org/pub/release-99/fasta/bos_taurus/ncrna/Bos_taurus.ARS-UCD1.2.ncrna.fa.gz
+    qfo_dna: ftp://ftp.ebi.ac.uk/pub/databases/reference_proteomes/QfO/Eukaryota/UP000009136_9913_DNA.fasta.gz
+  Danio_rerio_7955:
+    ncRNA: ftp://ftp.ensembl.org/pub/release-99/fasta/danio_rerio/ncrna/Danio_rerio.GRCz11.ncrna.fa.gz
+    qfo_dna: ftp://ftp.ebi.ac.uk/pub/databases/reference_proteomes/QfO/Eukaryota/UP000000437_7955_DNA.fasta.gz
+  Canis_lupus_familiaris_9615:
+    ncRNA: ftp://ftp.ensembl.org/pub/release-99/fasta/canis_familiaris/ncrna/Canis_familiaris.CanFam3.1.ncrna.fa.gz
+    qfo_dna: ftp://ftp.ebi.ac.uk/pub/databases/reference_proteomes/QfO/Eukaryota/UP000002254_9615_DNA.fasta.gz
+  Gallus_gallus_9031:
+    ncRNA: ftp://ftp.ensembl.org/pub/release-99/fasta/gallus_gallus/ncrna/Gallus_gallus.GRCg6a.ncrna.fa.gz 
+    qfo_dna: ftp://ftp.ebi.ac.uk/pub/databases/reference_proteomes/QfO/Eukaryota/UP000000539_9031_DNA.fasta.gz
+  Gorilla_gorilla_gorilla_9595:
+    ncRNA: ftp://ftp.ensembl.org/pub/release-99/fasta/gorilla_gorilla/ncrna/Gorilla_gorilla.gorGor4.ncrna.fa.gz
+    qfo_dna: ftp://ftp.ebi.ac.uk/pub/databases/reference_proteomes/QfO/Eukaryota/UP000001519_9595_DNA.fasta.gz
+  Lepisosteus_oculatus_7918: #spotted gar
+    ncRNA: ftp://ftp.ensembl.org/pub/release-99/fasta/lepisosteus_oculatus/ncrna/Lepisosteus_oculatus.LepOcu1.ncrna.fa.gz
+    qfo_dna: ftp://ftp.ebi.ac.uk/pub/databases/reference_proteomes/QfO/Eukaryota/UP000018468_7918_DNA.fasta.gz
+  Monodelphis_domestica_13616: #Gray short-tailed opossum
+    ncRNA: ftp://ftp.ensembl.org/pub/release-99/fasta/tursiops_truncatus/ncrna/Tursiops_truncatus.turTru1.ncrna.fa.gz 
+    qfo_dna: ftp://ftp.ebi.ac.uk/pub/databases/reference_proteomes/QfO/Eukaryota/UP000002280_13616_DNA.fasta.gz
+  Mus_musculus_10090:
+    ncRNA: ftp://ftp.ensembl.org/pub/release-99/fasta/mus_musculus/ncrna/Mus_musculus.GRCm38.ncrna.fa.gz
+    qfo_dna: ftp://ftp.ebi.ac.uk/pub/databases/reference_proteomes/QfO/Eukaryota/UP000000589_10090_DNA.fasta.gz
+  Oryzias_latipes_8090: #Japanese medaka HSOK / Japanese killifish
+    ncRNA: ftp://ftp.ensembl.org/pub/release-99/fasta/oryzias_latipes_hsok/ncrna/Oryzias_latipes_hsok.ASM223469v1.ncrna.fa.gz
+    qfo_dna: ftp://ftp.ebi.ac.uk/pub/databases/reference_proteomes/QfO/Eukaryota/UP000001038_8090_DNA.fasta.gz
+  Pan_troglodytes_9598: #Chimpanzee 
+    ncRNA: ftp://ftp.ensembl.org/pub/release-99/fasta/pan_troglodytes/ncrna/Pan_troglodytes.Pan_tro_3.0.ncrna.fa.gz 
+    qfo_dna: ftp://ftp.ebi.ac.uk/pub/databases/reference_proteomes/QfO/Eukaryota/UP000002277_9598_DNA.fasta.gz
+  Rattus_norvegicus_10116: #Rat 
+    ncRNA: ftp://ftp.ensembl.org/pub/release-99/fasta/rattus_norvegicus/ncrna/Rattus_norvegicus.Rnor_6.0.ncrna.fa.gz 
+    qfo_dna: ftp://ftp.ebi.ac.uk/pub/databases/reference_proteomes/QfO/Eukaryota/UP000002494_10116_DNA.fasta.gz
+  Xenopus_tropicalis_8364: #Western clawed frog /Silurana tropicalis
+    ncRNA: ftp://ftp.ensembl.org/pub/release-99/fasta/xenopus_tropicalis/ncrna/Xenopus_tropicalis.Xenopus_tropicalis_v9.1.ncrna.fa.gz 
+    qfo_dna: ftp://ftp.ebi.ac.uk/pub/databases/reference_proteomes/QfO/Eukaryota/UP000008143_8364_DNA.fasta.gz
+
+simulation_params:
+  read_len: 150
+  paired: False
+  num_replicates: 1 #5
+  num_reads_per_transcript: 1000
+
+sencha_params:
+  peptide_references:
+    uniprot_opisthokonta: 
+      path: peptide_references/uniprot-taxonomy_33154+reviewed_yes.fasta.gz
+      tablesize: 1e9
+      index_memory: 20000
+    uniprot_sprot: 
+      path: peptide_references/uniprot_sprot.fasta.gz
+      #link: ftp://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/complete/uniprot_sprot.fasta.gz
+      tablesize: 1e9
+      index_memory: 20000
+    Hsapiens_QfO: 
+      #link: ftp://ftp.ebi.ac.uk/pub/databases/reference_proteomes/QfO/Eukaryota/UP000005640_9606_DNA.fasta.gz
+      path: peptide_references/UP000005640_9606.fasta
+      tablesize: 1e8
+      index_memory: 20000
+    #merc: 
+    #  path: /home/ntpierce/2020-pep/khtools_testing/MERC.fasta.gz
+    #  tablesize: 1e10
+    #  index_memory: 60000
+  alphabet:
+    protein:
+      ksizes: [5,7,9,10]
+      jaccard_threshold: [0.75, 0.8, 0.85, 0.9, 0.95]
+    dayhoff:
+      ksizes: [9,11,13,15]
+      jaccard_threshold: [0.75, 0.8, 0.85, 0.9, 0.95]
+    hp:
+      ksizes: [29, 31, 33]
+      jaccard_threshold: [0.75, 0.8, 0.85, 0.9, 0.95]
+
+
+# more info:
+
+## for coding reads, chose to use only the QfO coding sequences, not the Ensemble cds.
+## They are likely comparable (to do: follow up to see difference).
+
+#From README: ftp://ftp.ebi.ac.uk/pub/databases/reference_proteomes/QfO/README
+#
+#    Coding DNA Sequence FASTA files (*_DNA.fasta)
+#    =============================================
+
+#    These files contain the coding DNA sequences (CDS) for the protein sequences
+#    where it was possible.
+#    The format is as in the following example (UP000005640_9606_DNA.fasta):
+#
+#    >sp|A0A183|ENSP00000411070
+#    ATGTCACAGCAGAAGCAGCAATCTTGGAAGCCTCCAAATGTTCCCAAATGCTCCCCTCCC
+#    CAAAGATCAAACCCCTGCCTAGCTCCCTACTCGACTCCTTGTGGTGCTCCCCATTCAGAA
+#    GGTTGTCATTCCAGTTCCCAAAGGCCTGAGGTTCAGAAGCCTAGGAGGGCTCGTCAAAAG
+#    CTGCGCTGCCTAAGTAGGGGCACAACCTACCACTGCAAAGAGGAAGAGTGTGAAGGCGAC
+#    TGA
+#
+#    The 3 fields of the FASTA header are:
+#    1) 'sp' (Swiss-Prot reviewed) or 'tr' (TrEMBL)
+#    2) UniProtKB Accession
+#    3) EMBL Protein ID or Ensembl/Ensembl Genome ID
+
+
